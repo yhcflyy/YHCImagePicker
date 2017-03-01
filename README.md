@@ -1,7 +1,7 @@
 # YHCImagePicker
 类似于QQ的相册选择器
 
-![image](https://github.com/yhcflyy/YHCImagePicker/blob/master/screenshot/1.png)![image](https://github.com/yhcflyy/YHCImagePicker/blob/master/screenshot/2.png)![image](https://github.com/yhcflyy/YHCImagePicker/blob/master/screenshot/3.png)![image](https://github.com/yhcflyy/YHCImagePicker/blob/master/screenshot/4.png)
+![image](https://github.com/yhcflyy/YHCImagePicker/blob/master/screenshot/1.gif)
 
 
 使用方法：
