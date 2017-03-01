@@ -24,6 +24,7 @@
 		F73A420F1E66586C006A1202 /* AFFVSPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A41F11E66586C006A1202 /* AFFVSPhotoBrowserCell.m */; };
 		F73A42101E66586C006A1202 /* AFFVSPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A41F31E66586C006A1202 /* AFFVSPhotoCell.m */; };
 		F73A42111E66586C006A1202 /* AFFVSPhotoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F73A41F51E66586C006A1202 /* AFFVSPhotoWindow.m */; };
+		F7C0D3C31E66B5BF000E315C /* UIApplication+Permissions.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0D3C21E66B5BF000E315C /* UIApplication+Permissions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		F73A41F31E66586C006A1202 /* AFFVSPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFFVSPhotoCell.m; sourceTree = "<group>"; };
 		F73A41F41E66586C006A1202 /* AFFVSPhotoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFFVSPhotoWindow.h; sourceTree = "<group>"; };
 		F73A41F51E66586C006A1202 /* AFFVSPhotoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFFVSPhotoWindow.m; sourceTree = "<group>"; };
+		F7C0D3C11E66B5BF000E315C /* UIApplication+Permissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Permissions.h"; sourceTree = "<group>"; };
+		F7C0D3C21E66B5BF000E315C /* UIApplication+Permissions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Permissions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,8 @@
 		F73A41E31E66586C006A1202 /* YHCImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				F7C0D3C11E66B5BF000E315C /* UIApplication+Permissions.h */,
+				F7C0D3C21E66B5BF000E315C /* UIApplication+Permissions.m */,
 				F73A41E41E66586C006A1202 /* AFFPhotoModel.h */,
 				F73A41E51E66586C006A1202 /* AFFPhotoModel.m */,
 				F73A41E61E66586C006A1202 /* AFFPhotoPickerManager.h */,
@@ -327,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C0D3C31E66B5BF000E315C /* UIApplication+Permissions.m in Sources */,
 				F73A41B81E66583C006A1202 /* ViewController.m in Sources */,
 				F73A420D1E66586C006A1202 /* AFFVCPhotoGroupList.m in Sources */,
 				F73A41B51E66583C006A1202 /* AppDelegate.m in Sources */,
@@ -574,6 +580,7 @@
 				F73A41DC1E66583D006A1202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F73A41DD1E66583D006A1202 /* Build configuration list for PBXNativeTarget "YHCImagePickerTests" */ = {
 			isa = XCConfigurationList;
@@ -582,6 +589,7 @@
 				F73A41DF1E66583D006A1202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F73A41E01E66583D006A1202 /* Build configuration list for PBXNativeTarget "YHCImagePickerUITests" */ = {
 			isa = XCConfigurationList;
@@ -590,6 +598,7 @@
 				F73A41E21E66583D006A1202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

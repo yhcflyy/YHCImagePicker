@@ -135,7 +135,7 @@ static CGFloat AFFPhotoScreenScale;
                 [albumArr addObject:[self modelWithResult:fetchResult name:collection.localizedTitle isPickVideo:isPickVideo]];
             }
         }
-        if (completion && albumArr.count > 0) completion(albumArr);
+        if (completion) completion(albumArr);
     }
 }
 

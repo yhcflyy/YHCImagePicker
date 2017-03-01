@@ -11,6 +11,7 @@
 #import "AFFVCPhotoGroupList.h"
 #import "AFFVCPhotoDetail.h"
 #import "AFFVCSPhotoBrowser.h"
+#import "UIApplication+Permissions.h"
 
 #define  CollectionViewHeight 150
 #define  maxShow 30
@@ -152,48 +153,53 @@ UIGestureRecognizerDelegate
         if(self.isPickVideo) self.maxSelCount = 1;
         else self.maxSelCount = 9;
     }
-    if(self.isPickVideo && self.imagePath.length > 0){
-        //        self.imagePath = kSetting.path_TempVideo;
+    if(self.isPickVideo && self.imagePath.length <= 0){
+        self.imagePath = [AFFPhotoPickerManager getImageFolder];
     }
     __weak typeof(self) weakSelf = self;
-    [self getData];
-    //    if(IOS_VERSION < 8.0){
-    //        kPermissionAccess accType = [[UIApplication sharedApplication] hasAccessToPhotos];
-    //        if(accType == kPermissionAccessGranted){
-    //            if(!self.isAllowPhoto) [weakSelf getData];
-    //            self.isAllowPhoto = YES;
-    //        }else if(accType == kPermissionAccessNotRequest){
-    //            [[UIApplication sharedApplication] requestAccessToPhotosWithSuccess:^{
-    //                if(!self.isAllowPhoto) [weakSelf getData];
-    //                self.isAllowPhoto = YES;
-    //            } andFailure:^{
-    //
-    //            }];
-    //        }else if(accType == kPermissionAccessDenied) {
-    //            [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-    //            } title:@"无法使用相册请在iPhone的\"设置-隐私-相册\"中允许百鱼访问您的相册" message:nil cancelButtonName:@"确定" otherButtonTitles:nil, nil];
-    //        }
-    //
-    //    }else{
-    //        kPermissionAccess accType = [[UIApplication sharedApplication] hasAccessToPhotos];
-    //        if(accType == kPermissionAccessGranted){
-    //            if(!self.isAllowPhoto) [weakSelf getData];
-    //            self.isAllowPhoto = YES;
-    //        }else if(accType == kPermissionAccessNotRequest){
-    //            [[UIApplication sharedApplication] requestAccessToPhotosWithSuccess:^{
-    //                if(!self.isAllowPhoto) [weakSelf getData];
-    //                self.isAllowPhoto = YES;
-    //            } andFailure:^{
-    //
-    //            }];
-    //        }else if(accType == kPermissionAccessDenied) {
-    //            [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-    //                if(buttonIndex == 1){
-    //                    [weakSelf showPermiss];
-    //                }
-    //            } title:@"无法访问相册，是否前往打开相册访问权限？" message:nil cancelButtonName:@"否" otherButtonTitles:@"是", nil];
-    //        }
-    //    }
+    
+    if(IOS_VERSION < 8.0){
+        kPermissionAccess accType = [[UIApplication sharedApplication] hasAccessToPhotos];
+        if(accType == kPermissionAccessGranted){
+            if(!self.isAllowPhoto) [weakSelf getData];
+            self.isAllowPhoto = YES;
+        }else if(accType == kPermissionAccessNotRequest){
+            [[UIApplication sharedApplication] requestAccessToPhotosWithSuccess:^{
+                if(!self.isAllowPhoto) [weakSelf getData];
+                self.isAllowPhoto = YES;
+            } andFailure:^{
+                
+            }];
+        }else if(accType == kPermissionAccessDenied) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                           message:@"无法使用相册请在iPhone的\"设置-隐私-相册\"中允许访问您的相册"
+                                                          delegate:self
+                                                 cancelButtonTitle:nil
+                                                 otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        
+    }else{
+        kPermissionAccess accType = [[UIApplication sharedApplication] hasAccessToPhotos];
+        if(accType == kPermissionAccessGranted){
+            if(!self.isAllowPhoto) [weakSelf getData];
+            self.isAllowPhoto = YES;
+        }else if(accType == kPermissionAccessNotRequest){
+            [[UIApplication sharedApplication] requestAccessToPhotosWithSuccess:^{
+                if(!self.isAllowPhoto) [weakSelf getData];
+                self.isAllowPhoto = YES;
+            } andFailure:^{
+                
+            }];
+        }else if(accType == kPermissionAccessDenied) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                           message:@"无法使用相册请在iPhone的\"设置-隐私-相册\"中允许访问您的相册"
+                                                          delegate:self
+                                                 cancelButtonTitle:nil
+                                                 otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+    }
     self.mArrScope = [NSMutableArray array];
     [AFFPhotoPickerManager shareManager].maxSelect = self.maxSelCount;
     if(self.arrSelect.count > 0){
@@ -203,6 +209,7 @@ UIGestureRecognizerDelegate
     }
 }
 
+
 -(void)getData{
     __weak typeof(self) weakSelf = self;
     [AFFPhotoPickerManager shareManager].sortAscendingByModificationDate = NO;
@@ -210,6 +217,7 @@ UIGestureRecognizerDelegate
         [[AFFPhotoPickerManager shareManager] getAssetsFromResult:model.result isPickVideo:self.isPickVideo max:maxShow block:^(NSArray<AFFPhotoModel *> *models) {
             weakSelf.mArrData = [NSMutableArray arrayWithArray:models];
             [weakSelf setUI];
+            [weakSelf.collectionView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf.collectionView setContentOffset:CGPointMake(weakSelf.collectionView.contentOffset.x + 1, 0) animated:NO];
             });
