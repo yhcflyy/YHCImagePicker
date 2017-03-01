@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[AFFSPhotoPicker setUI]:AFFSPhotoPicker.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[AFFVSPhotoWindow initWithCutType:maxSelect:imagePath:isAllowMulSel:isCleanFolder:]:AFFVSPhotoWindow.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.picker.imagePath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AFFVCPhotoDetail setup]:AFFVCPhotoDetail.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.album.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
