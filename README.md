@@ -1,5 +1,6 @@
 # YHCImagePicker
 类似于QQ的相册选择器
+
 使用方法：
 
 1.现在类中持有一个AFFVSPhotoWindow对象
@@ -8,9 +9,7 @@
 
 
   self.photoWindow = [[AFFVSPhotoWindow alloc]initWithCutType:NO maxSelect:5 imagePath:nil isAllowMulSel:YES isCleanFolder:NO];
-  
     self.photoWindow.delegate = self;
-    
     [self.photoWindow makeKeyAndVisible];
     
     主要的入参有是否选择视频isPickVideo、是否允许你多选isAllowMulSel，从相册取出图片、视频的临时存放目录imagePath，最多能选择几张图片maxImageShowInPicker
